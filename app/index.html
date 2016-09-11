@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/skeleton.css">
+    <link rel="stylesheet" href="assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="assets/css/nouislider.pips.css">
+    <link rel="stylesheet" href="assets/css/nouislider.tooltips.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+  </head>
+  <body class="u_full_width">
+    <div class="u_full_width header">
+      <div class="container">
+        <button class="u_float_left btnAlign button-primary" id="btn_Menu">Open Menu</button>
+        <div class="u_float_right title">
+          Volcano Visualizer
+        </div>
+      </div>
+    </div>
+    <div class="u_full_width body">
+      <!-- MAIN MENU CONTAINER -->
+      <div class="container" id="viewMain">
+        <div class="row">
+          <div class="three columns">
+            <label>Server address</label>
+            <input class="u-full-width" type="text" placeholder="localhost:81" value="localhost:81" id="options_addr">
+          </div>
+          <div class="six columns">
+            <label>Current Addr</label>
+            <label id="check_addr">http://localhost:81</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="six columns">
+            <label>Volcano</label>
+            <select class="u-full-width" id="options_volc"></select>
+            <label>Degree</label>
+            <input type="text" value="0.2" class="u-full-width" id="options_degree">
+            <label>Cluster</label>
+            <input type="text" value="3" class="u-full-width" id="options_cluster">
+            <label>Life(ms)</label>
+            <input type="text" value="604800000" class="u-full-width" id="options_life">
+            <label>time skip per second(ms)</label>
+            <input type="text" value="86400000" class="u-full-width" id="options_skip">
+          </div>
+          <div class="six columns">
+            <label id="updateInfo">Current Volc: , Current lat: , Current Long: </label>
+            <button class="u-max-full-width" id="btn-volc">Update Volc</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container u_hidden" id="viewThree">
+        <div class="threeDom" id="viewThreeDom"></div>
+        <div class="threeFooter">
+          <div id="slider"></div>
+
+          <input class="u_float_left slider" id="slider_container_end" type="text">
+          <input class="u_float_right slider" id="slider_container_start" type="text">
+          <div class="threeButtons">
+            <button class="u_float_left goodButton usable" id="threeStart">Start</button>
+            <button class="u_float_left badButton usable" id="threeStop">Stop</button>
+            <button class="u_float_left badButton usable" id="threeRender">Render</button>
+            <button class="u_float_left badButton usable" id="threeCluster">Run Cluster</button>
+            <button class="u_float_left badButton usable" id="threePlay">Play</button>
+          </div>
+
+          <div class="threed3" id="threed3"></div>
+        </div>
+      </div>
+
+      <!-- SIDE MENU -->
+      <div class="u_float_left menu u_hidden" id="sideMenu">
+        <div class="u_full_width">
+          <button class="menuBtn button-primary" id="btn_MainMenu">Main Menu</button>
+          <button class="menuBtn" id="btn_Three">Three</button>
+        </div>
+      </div>
+
+      <!-- SIDE MENU BACK COLOR -->
+      <div class="u_float_right menuBack u_hidden" id="sideMenuOverlay"></div>
+    </div>
+    <!-- <div class="u-pull-left menuPane row rightBorder">
+      <div class="u-center u-60">
+            <button class="u-max-full-width button-primary" id="menu-btn">Main Menu</button>
+            <button class="u-max-full-width" id="view-btn">3d View</button>
+            <button class="u-max-full-width" id="view-data">Data View</button>
+      </div>
+      <div class="u-center u-60">
+          <button class="u-max-full-width" id="btn-start">Start</button>
+          <button class="u-max-full-width" id="btn-stop">Stop</button>
+          <button class="u-max-full-width" id="btn-render">renderEQ</button>
+          <button class="u-max-full-width" id="btn-step">Step CL.</button>
+          <button class="u-max-full-width" id="btn-clust">find CL.</button>
+          <button class="u-max-full-width" id="btn-play">play</button>
+      </div>
+      We are using node <script>document.write(process.versions.node)</script>,
+      Chromium <script>document.write(process.versions.chrome)</script>,
+      and Electron <script>document.write(process.versions.electron)</script>.
+    </div>
+    <div class="u-pull-left bodyPane u-hide" id="view">
+    </div>
+    <div class="u-pull-left bodyPane" id="menu">
+      <div class="container">
+        <div class="row">
+          <div class="three columns">
+            <label>Server address</label>
+            <input class="u-full-width" type="text" placeholder="localhost:81" value="localhost:81" id="options_addr">
+          </div>
+          <div class="six columns">
+            <label>Current Addr</label>
+            <label id="check_addr">localhost:81</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="six columns">
+            <label>Volcano</label>
+            <select class="u-full-width" id="options_volc">
+            <label>Degree</label>
+            <input type="text" value="0.2" class="u-full-width" id="options_degree">
+            <label>Cluster</label>
+            <input type="text" value="3" class="u-full-width" id="options_cluster">
+          </div>
+          <div class="six columns">
+            <label>Current Volc: , Current lat: , Current Long: </label>
+            <button class="u-max-full-width" id="btn-volc">Update Volc</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="u-pull-left bodyPane2" id="mainpageData">
+    </div>
+    <div class="u-pull-left footer">
+      <div id="slider-time"></div>
+      <input id="slider-container" type="text">
+    </div> -->
+  </body>
+  <script>
+    // You can also require other files to run in this process
+    require('./assets/js/ex-links.js')
+    // require('./assets/js/notifications.js')
+
+    // Three js files
+    const THREE = require('./lib/includes/three.min.js')
+    require('./lib/includes/threeterrain.min.js')
+    require('./lib/includes/orbit.min.js')
+
+    // Main app file
+    require('./lib/app.js')
+  </script>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "veqElec",
+  "productName": "veqElec",
+  "description": "UTEP Research project, virtualization of earthquakes around volcanoes",
+  "version": "0.0.1",
+  "homepage": "https://utep.edu",
+  "author": {
+    "name": "Justin Parra",
+    "email": "jrparra2@miners.utep.edu",
+    "url": "https://utep.edu"
+  },
+  "main": "main.js",
+  "electronVersion": "1.0.0",
+  "dependencies": {
+    "electron-debug": "^1",
+    "devtron": "^1.1",
+    "lodash": "^4"
+  },
+  "config": {
+    "url": "index.html",
+    "update": {
+      "url": false
+    }
+  }
+}
